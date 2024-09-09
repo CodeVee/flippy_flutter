@@ -1,3 +1,4 @@
+import 'package:flippy_app/components/components.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -43,41 +44,24 @@ class _WelcomePageState extends State<WelcomePage> {
     });
   }
 
+  void nextPage() {
+    _controller.jumpToPage(_currentPage.toInt() + 1);
+  }
+
+  void skip() {
+    _controller.jumpToPage(2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/main_logo.png'),
-                const Column(
-                  children: [
-                    Text(
-                      "Flippy",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 86, 213, 168),
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic),
-                    ),
-                    Text(
-                      "Online Grocery Shops",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 39, 55, 115),
-                          fontSize: 12),
-                    )
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+            const AppHeader(),
+            const SizedBox(height: 10),
             SizedBox(
                 height: 420,
                 child: PageView(
@@ -94,10 +78,11 @@ class _WelcomePageState extends State<WelcomePage> {
                   style: TextStyle(
                       fontSize: 14, color: Color.fromARGB(128, 17, 17, 17)),
                 )),
-            const SizedBox(
-              height: 50,
-            ),
-            Container(child: _lastPage ? _getButton() : _getScroll())
+            const SizedBox(height: 50),
+            Container(
+                child: _lastPage
+                    ? AppButton(title: "Get Started", onTap: () {})
+                    : _getScroll())
           ],
         ),
       ),
@@ -127,13 +112,16 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _getScroll() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "SKIP",
-              style: TextStyle(color: Color.fromARGB(255, 17, 17, 17)),
+            GestureDetector(
+              onTap: skip,
+              child: const Text(
+                "SKIP",
+                style: TextStyle(color: Color.fromARGB(255, 17, 17, 17)),
+              ),
             ),
             Row(
               children: List.of([0, 1, 2]).map((index) {
@@ -148,42 +136,14 @@ class _WelcomePageState extends State<WelcomePage> {
                             : const Color.fromARGB(76, 39, 55, 115)));
               }).toList(),
             ),
-            const Text(
-              "NEXT",
-              style: TextStyle(color: Color.fromARGB(255, 39, 55, 115)),
+            GestureDetector(
+              onTap: nextPage,
+              child: const Text(
+                "NEXT",
+                style: TextStyle(color: Color.fromARGB(255, 39, 55, 115)),
+              ),
             )
           ],
         ));
-  }
-
-  Widget _getButton() {
-    return Stack(
-      alignment: Alignment.centerRight,
-      children: [
-        Container(
-          height: 50,
-          width: 274,
-          decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 39, 55, 115),
-              borderRadius: BorderRadius.circular(25)),
-          child: const Center(
-              child: Text(
-            "Get Started",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          )),
-        ),
-        Container(
-          height: 50,
-          width: 50,
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Color.fromARGB(39, 255, 255, 255)),
-          child: const Icon(
-            Icons.arrow_right_alt,
-            color: Colors.white,
-            size: 32,
-          ),
-        )
-      ],
-    );
   }
 }
