@@ -81,7 +81,11 @@ class _WelcomePageState extends State<WelcomePage> {
             const SizedBox(height: 50),
             Container(
                 child: _lastPage
-                    ? AppButton(title: "Get Started", onTap: () {})
+                    ? AppButton(
+                        title: "Get Started",
+                        onTap: () {
+                          Navigator.pushNamed(context, "/login-register");
+                        })
                     : _getScroll())
           ],
         ),
