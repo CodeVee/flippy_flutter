@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppHeader extends StatelessWidget {
-  const AppHeader({super.key});
+  final bool alternate;
+  const AppHeader({super.key, this.alternate = false});
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +10,9 @@ class AppHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset('assets/main_logo.png'),
-        const Column(
+        Column(
           children: [
-            Text(
+            const Text(
               "Flippy",
               style: TextStyle(
                   color: Color.fromARGB(255, 86, 213, 168),
@@ -22,7 +23,10 @@ class AppHeader extends StatelessWidget {
             Text(
               "Online Grocery Shops",
               style: TextStyle(
-                  color: Color.fromARGB(255, 39, 55, 115), fontSize: 12),
+                  color: alternate
+                      ? Colors.white
+                      : const Color.fromARGB(255, 39, 55, 115),
+                  fontSize: 12),
             )
           ],
         )
