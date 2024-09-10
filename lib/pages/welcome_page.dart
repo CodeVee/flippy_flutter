@@ -112,16 +112,14 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _getScroll() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: skip,
-              child: const Text(
-                "SKIP",
-                style: TextStyle(color: Color.fromARGB(255, 17, 17, 17)),
-              ),
+            MaterialButton(
+              onPressed: skip,
+              child: const Text("SKIP",
+                  style: TextStyle(color: Color(0xFF111111))),
             ),
             Row(
               children: List.of([0, 1, 2]).map((index) {
@@ -136,12 +134,10 @@ class _WelcomePageState extends State<WelcomePage> {
                             : const Color.fromARGB(76, 39, 55, 115)));
               }).toList(),
             ),
-            GestureDetector(
-              onTap: nextPage,
-              child: const Text(
-                "NEXT",
-                style: TextStyle(color: Color.fromARGB(255, 39, 55, 115)),
-              ),
+            MaterialButton(
+              onPressed: nextPage,
+              child: const Text("NEXT",
+                  style: TextStyle(color: Color(0xFF273773))),
             )
           ],
         ));
