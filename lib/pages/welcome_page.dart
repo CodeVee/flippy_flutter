@@ -1,5 +1,6 @@
 import 'package:flippy_app/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -9,47 +10,31 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  static const _duration = 500;
   final _controller = PageController();
 
-  final imagePaths = [
-    {
-      'path': 'assets/welcome_item.png',
-      'header': 'Choose Item Online',
-      'fit': BoxFit.cover
-    },
-    {
-      'path': 'assets/welcome_payment.png',
-      'header': 'Payment Online',
-      'fit': BoxFit.cover
-    },
-    {
-      'path': 'assets/welcome_order.png',
-      'header': 'Get Your Order',
-      'fit': BoxFit.contain
-    },
+  final List<WelcomeContent> imagePaths = [
+    const WelcomeContent(
+        path: 'assets/welcome_item.png',
+        header: 'Choose Item Online',
+        boxfit: BoxFit.cover),
+    const WelcomeContent(
+        path: 'assets/welcome_payment.png',
+        header: 'Payment Online',
+        boxfit: BoxFit.cover),
+    const WelcomeContent(
+        path: 'assets/welcome_order.png',
+        header: 'Get Your Order',
+        boxfit: BoxFit.contain)
   ];
 
   int _currentPage = 0;
-
   bool _lastPage = false;
 
   @override
-  void initState() {
-    super.initState();
-    _controller.addListener(() {
-      setState(() {
-        _currentPage = _controller.page?.toInt() ?? 0;
-        _lastPage = _currentPage == imagePaths.length - 1;
-      });
-    });
-  }
-
-  void nextPage() {
-    _controller.jumpToPage(_currentPage.toInt() + 1);
-  }
-
-  void skip() {
-    _controller.jumpToPage(2);
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -58,27 +43,34 @@ class _WelcomePageState extends State<WelcomePage> {
         body: SafeArea(
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             const AppHeader(),
             const SizedBox(height: 10),
             SizedBox(
                 height: 420,
-                child: PageView(
-                  controller: _controller,
-                  children: List.of(imagePaths)
-                      .map((image) => _getPage(image))
-                      .toList(),
-                )),
-            const SizedBox(
+                child: PageView.builder(
+                    itemCount: imagePaths.length,
+                    controller: _controller,
+                    onPageChanged: (pageNumber) => {
+                          setState(() {
+                            _currentPage = pageNumber;
+                            _lastPage = _currentPage == imagePaths.length - 1;
+                          })
+                        },
+                    itemBuilder: (context, index) =>
+                        _getPage(imagePaths[index]))),
+            SizedBox(
                 width: 230,
                 child: Text(
                   "Plan your trip, choose your destination. Pick the best place for your holiday.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 14, color: Color.fromARGB(128, 17, 17, 17)),
+                  style: GoogleFonts.lato(
+                      textStyle: const TextStyle(
+                          fontSize: 14,
+                          color: Color.fromRGBO(17, 17, 17, 0.5))),
                 )),
-            const SizedBox(height: 50),
+            const Spacer(),
             Container(
                 child: _lastPage
                     ? AppButton(
@@ -86,29 +78,28 @@ class _WelcomePageState extends State<WelcomePage> {
                         onTap: () {
                           Navigator.pushNamed(context, "/login-register");
                         })
-                    : _getScroll())
+                    : _getScroll()),
+            const Spacer()
           ],
         ),
       ),
     ));
   }
 
-  Widget _getPage(Map<String, Object> imagePath) {
+  Widget _getPage(WelcomeContent content) {
     return Column(
       children: [
-        SizedBox(
-            height: 333,
-            child: Image.asset(
-              imagePath['path'].toString(),
-              fit: imagePath['fit'] as BoxFit,
-            )),
-        const SizedBox(
-          height: 50,
+        Image.asset(
+          height: 350,
+          content.path,
+          fit: content.boxfit,
         ),
+        const Spacer(),
         Text(
-          imagePath['header'].toString(),
-          style: const TextStyle(
-              fontSize: 22, color: Color.fromARGB(255, 17, 17, 17)),
+          content.header,
+          style: GoogleFonts.lato(
+              textStyle:
+                  const TextStyle(fontSize: 22, color: Color(0xFF111111))),
         ),
       ],
     );
@@ -121,29 +112,51 @@ class _WelcomePageState extends State<WelcomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MaterialButton(
-              onPressed: skip,
-              child: const Text("SKIP",
-                  style: TextStyle(color: Color(0xFF111111))),
+              onPressed: () {
+                _controller.animateToPage(2,
+                    duration: const Duration(milliseconds: _duration),
+                    curve: Curves.ease);
+              },
+              child: Text("SKIP",
+                  style: GoogleFonts.lato(
+                      textStyle: const TextStyle(color: Color(0xFF111111)))),
             ),
             Row(
-              children: List.of([0, 1, 2]).map((index) {
-                return Container(
-                    height: 10,
-                    width: 10,
-                    margin: const EdgeInsets.only(left: 5),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index == _currentPage
-                            ? const Color.fromARGB(255, 39, 55, 115)
-                            : const Color.fromARGB(76, 39, 55, 115)));
-              }).toList(),
+              children: List.generate(imagePaths.length,
+                  (index) => _getDotIndicator(index == _currentPage)),
             ),
             MaterialButton(
-              onPressed: nextPage,
-              child: const Text("NEXT",
-                  style: TextStyle(color: Color(0xFF273773))),
+              onPressed: () {
+                _controller.nextPage(
+                    duration: const Duration(milliseconds: _duration),
+                    curve: Curves.ease);
+              },
+              child: Text("NEXT",
+                  style: GoogleFonts.lato(
+                      textStyle: const TextStyle(color: Color(0xFF273773)))),
             )
           ],
         ));
   }
+
+  Widget _getDotIndicator(bool isActive) {
+    return AnimatedContainer(
+        duration: const Duration(milliseconds: _duration),
+        height: 10,
+        width: 10,
+        margin: const EdgeInsets.only(left: 5),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isActive
+                ? const Color(0xFF273773)
+                : const Color.fromRGBO(39, 55, 115, .3)));
+  }
+}
+
+class WelcomeContent {
+  final String path;
+  final String header;
+  final BoxFit boxfit;
+  const WelcomeContent(
+      {required this.path, required this.header, required this.boxfit});
 }
