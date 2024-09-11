@@ -11,6 +11,10 @@ class LoginRegisterPage extends StatelessWidget {
         title: const Text("Choose Location",
             style: TextStyle(color: Colors.white, fontSize: 14)),
         backgroundColor: const Color(0xFF273773),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_sharp, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
         actions: [
           MaterialButton(
               onPressed: () {
@@ -23,12 +27,12 @@ class LoginRegisterPage extends StatelessWidget {
         child: Container(
           color: const Color(0xFF273773),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Spacer(),
               const AppHeader(alternate: true),
-              const SizedBox(height: 50),
+              const Spacer(),
               Image.asset("assets/main_avatar.png"),
-              const SizedBox(height: 50),
+              const Spacer(),
               AppButton(
                   title: "Login With Google", onTap: () {}, secondary: true),
               const SizedBox(height: 20),
@@ -36,6 +40,7 @@ class LoginRegisterPage extends StatelessWidget {
                   title: "Continue With Facebook",
                   onTap: () {},
                   secondary: true),
+              const Spacer()
             ],
           ),
         ),
