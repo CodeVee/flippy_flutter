@@ -14,6 +14,16 @@ class _LoginPageState extends State<LoginPage> {
   static const _page = "Login";
 
   bool _rememberMe = false;
+  bool _obscurePassword = true;
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +90,20 @@ class _LoginPageState extends State<LoginPage> {
                             )))
                   ]),
                   const SizedBox(height: 20),
-                  _getTextBox("User Name"),
+                  AppTextField(
+                      title: "User Name", controller: _usernameController),
                   const SizedBox(height: 10),
-                  _getTextBox("Password"),
+                  AppTextField(
+                    title: "Password",
+                    controller: _passwordController,
+                    password: true,
+                    isObscured: _obscurePassword,
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
@@ -138,23 +159,9 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Image.asset("assets/google_logo.png"),
-                    ),
+                    _getSocialIcon("assets/google_logo.png"),
                     const SizedBox(width: 10),
-                    Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Image.asset("assets/facebook_logo.png"),
-                    )
+                    _getSocialIcon("assets/facebook_logo.png"),
                   ],
                 )
               ],
@@ -166,25 +173,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _getTextBox(String title) {
+  Widget _getSocialIcon(String imagePath) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      height: 60,
+      width: 60,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                      fontSize: 10, color: AppColors.mainDark.withOpacity(.5))
-                  .withLato()),
-          const TextField(
-              decoration: InputDecoration(
-            border: InputBorder.none,
-          ))
-        ],
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
+      child: Image.asset(imagePath),
     );
   }
 }
