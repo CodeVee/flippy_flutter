@@ -41,17 +41,18 @@ class _SplashPageState extends State<SplashPage> {
                 fit: BoxFit.contain,
               ),
             ),
-            const Text(
+            Text(
               "Flippy",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
+              style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic)
+                  .withLemon(),
             ),
-            const Text(
+            Text(
               "Online Grocery Shop",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white).withLato(),
             )
           ],
         ),
