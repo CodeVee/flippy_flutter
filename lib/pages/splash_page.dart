@@ -1,12 +1,31 @@
+import 'dart:async';
+
+import 'package:flippy_app/themes/themes.dart';
 import 'package:flutter/material.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  _navigateToWelcome() {
+    Timer(const Duration(seconds: 5),
+        () => Navigator.popAndPushNamed(context, "/welcome"));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _navigateToWelcome();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 39, 55, 115),
+      backgroundColor: AppColors.mainBlue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
