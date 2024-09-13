@@ -3,24 +3,30 @@ import 'package:flippy_app/components/components.dart';
 import 'package:flippy_app/themes/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  static const _page = "Login";
+class _RegisterPageState extends State<RegisterPage> {
+  static const _page = "Register";
 
-  bool _rememberMe = false;
   bool _obscurePassword = true;
   final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  _login() {
+    Navigator.pushNamedAndRemoveUntil(
+        context, "/login", ModalRoute.withName("/login-register"));
+  }
 
   @override
   void dispose() {
     _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -38,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             const AppHeader(),
             const SizedBox(height: 30),
             Text(
-              "Welcome You!",
+              "Register Now!",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
                   .withLato(),
             ),
@@ -47,6 +53,27 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   Row(children: [
+                    Expanded(
+                        child: GestureDetector(
+                            onTap: _login,
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                  color: AppColors.mainDark.withOpacity(.5),
+                                  width: 1.0,
+                                ),
+                              )),
+                              child: Text("Login",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.lato(
+                                      textStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.mainDark
+                                              .withOpacity(.5)))),
+                            ))),
                     Expanded(
                         child: Container(
                       padding: const EdgeInsets.all(16),
@@ -65,33 +92,11 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Color(0xFF273773))
                               .withLato()),
                     )),
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, "/register");
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                  color: AppColors.mainDark.withOpacity(.5),
-                                  width: 1.0,
-                                ),
-                              )),
-                              child: Text("Register",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.lato(
-                                      textStyle: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.mainDark
-                                              .withOpacity(.5)))),
-                            )))
                   ]),
                   const SizedBox(height: 20),
-                  AppTextField(
-                      title: "User Name", controller: _usernameController),
+                  AppTextField(title: "Name", controller: _usernameController),
+                  const SizedBox(height: 10),
+                  AppTextField(title: "Email", controller: _emailController),
                   const SizedBox(height: 10),
                   AppTextField(
                     title: "Password",
@@ -108,40 +113,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    Container(
-                        height: 20,
-                        width: 20,
-                        margin: const EdgeInsets.only(left: 16),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.mainBlue, width: 1.0)),
-                        child: Checkbox(
-                          value: _rememberMe,
-                          onChanged: (changed) {
-                            setState(() {
-                              _rememberMe = changed ?? false;
-                            });
-                          },
-                          activeColor: Colors.transparent,
-                          checkColor: AppColors.mainBlue,
-                          side: const BorderSide(
-                              color: Colors.transparent, width: 1.0),
-                        )),
-                    const SizedBox(width: 5),
-                    Text("Remember Me",
-                        style: const TextStyle(
-                                fontSize: 12, color: AppColors.mainDark)
-                            .withLato())
-                  ],
-                ),
                 MaterialButton(
-                    onPressed: () {},
+                    onPressed: _login,
                     child: const Text(
-                      "Forgot Password?",
+                      "Already have an account?",
                       style: TextStyle(fontSize: 10, color: AppColors.mainBlue),
                     ))
               ],
