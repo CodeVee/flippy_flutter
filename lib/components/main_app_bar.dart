@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MainAppBar extends StatelessWidget {
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
 
-  const MainAppBar({super.key, required this.title, this.actions});
+  @override
+  Size get preferredSize => const Size.fromHeight(60.0);
+
+  const MainAppBar({required this.title, this.actions, super.key});
 
   @override
   Widget build(BuildContext context) {

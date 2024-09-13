@@ -30,10 +30,10 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: AppColors.mainGrey,
       resizeToAvoidBottomInset: false,
+      appBar: const MainAppBar(title: _page),
       body: Center(
         child: Column(
           children: [
-            const MainAppBar(title: _page),
             const Spacer(),
             const AppHeader(),
             const Spacer(),
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                   .withLato(),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Row(children: [
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                         height: 20,
                         width: 20,
-                        margin: const EdgeInsets.only(left: 8),
+                        margin: const EdgeInsets.only(left: 16),
                         decoration: BoxDecoration(
                             border: Border.all(
                                 color: AppColors.mainBlue, width: 1.0)),
