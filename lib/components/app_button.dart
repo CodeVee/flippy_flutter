@@ -1,3 +1,4 @@
+import 'package:flippy_app/themes/themes.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
@@ -21,13 +22,12 @@ class AppButton extends StatelessWidget {
             height: 50,
             width: 274,
             decoration: BoxDecoration(
-                color: secondary ? Colors.white : const Color(0xFF273773),
+                color: secondary ? Colors.white : AppColors.mainBlue,
                 borderRadius: BorderRadius.circular(25)),
             child: Center(
                 child: Text(title,
                     style: TextStyle(
-                        color:
-                            secondary ? const Color(0xFF111111) : Colors.white,
+                        color: secondary ? AppColors.mainDark : Colors.white,
                         fontWeight: FontWeight.bold))),
           ),
           Container(
@@ -35,12 +35,10 @@ class AppButton extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: secondary
-                    ? const Color(0x27273773)
-                    : const Color(0x27FFFFFF)),
-            child: Icon(Icons.arrow_right_alt,
-                color: secondary ? const Color(0xFF111111) : Colors.white,
-                size: 32),
+                color: (secondary ? AppColors.mainBlue : Colors.white)
+                    .withOpacity(.15)),
+            child: Image.asset("assets/right_arrow.png",
+                color: secondary ? AppColors.mainDark : Colors.white),
           )
         ],
       ),
