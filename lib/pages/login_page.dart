@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flippy_app/themes/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -81,12 +80,12 @@ class _LoginPageState extends State<LoginPage> {
                               )),
                               child: Text("Register",
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.lato(
-                                      textStyle: TextStyle(
+                                  style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           color: AppColors.mainDark
-                                              .withOpacity(.5)))),
+                                              .withOpacity(.5))
+                                      .withLato()),
                             )))
                   ]),
                   const SizedBox(height: 20),
@@ -139,7 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/forgot-password");
+                    },
                     child: const Text(
                       "Forgot Password?",
                       style: TextStyle(fontSize: 10, color: AppColors.mainBlue),

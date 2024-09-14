@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flippy_app/themes/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -67,12 +66,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               )),
                               child: Text("Login",
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.lato(
-                                      textStyle: TextStyle(
+                                  style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           color: AppColors.mainDark
-                                              .withOpacity(.5)))),
+                                              .withOpacity(.5))
+                                      .withLato()),
                             ))),
                     Expanded(
                         child: Container(
