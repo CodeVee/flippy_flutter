@@ -44,54 +44,66 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 30),
             Text(
               "Register Now!",
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
-                  .withLato(),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ).withLato(),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  Row(children: [
-                    Expanded(
+                  Row(
+                    children: [
+                      Expanded(
                         child: GestureDetector(
-                            onTap: _login,
-                            child: Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                  border: Border(
+                          onTap: _login,
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              border: Border(
                                 bottom: BorderSide(
                                   color: AppColors.mainDark.withOpacity(.5),
                                   width: 1.0,
                                 ),
-                              )),
-                              child: Text("Login",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.mainDark
-                                              .withOpacity(.5))
-                                      .withLato()),
-                            ))),
-                    Expanded(
-                        child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: const BoxDecoration(
-                          border: Border(
-                        bottom: BorderSide(
-                          color: AppColors.mainBlue,
-                          width: 2.0,
+                              ),
+                            ),
+                            child: Text(
+                              "Login",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.mainDark.withOpacity(.5),
+                              ).withLato(),
+                            ),
+                          ),
                         ),
-                      )),
-                      child: Text(_page,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF273773))
-                              .withLato()),
-                    )),
-                  ]),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: AppColors.mainBlue,
+                                width: 2.0,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            _page,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF273773),
+                            ).withLato(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 20),
                   AppTextField(title: "Name", controller: _usernameController),
                   const SizedBox(height: 10),
@@ -115,11 +127,12 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 MaterialButton(
-                    onPressed: _login,
-                    child: const Text(
-                      "Already have an account?",
-                      style: TextStyle(fontSize: 10, color: AppColors.mainBlue),
-                    ))
+                  onPressed: _login,
+                  child: const Text(
+                    "Already have an account?",
+                    style: TextStyle(fontSize: 10, color: AppColors.mainBlue),
+                  ),
+                )
               ],
             ),
             const Spacer(),
@@ -127,10 +140,13 @@ class _RegisterPageState extends State<RegisterPage> {
             const Spacer(),
             Column(
               children: [
-                Text("Or login with social media",
-                    style:
-                        const TextStyle(fontSize: 12, color: AppColors.mainDark)
-                            .withLato()),
+                Text(
+                  "Or login with social media",
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.mainDark,
+                  ).withLato(),
+                ),
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +170,9 @@ class _RegisterPageState extends State<RegisterPage> {
       height: 60,
       width: 60,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Image.asset(imagePath),
     );
   }

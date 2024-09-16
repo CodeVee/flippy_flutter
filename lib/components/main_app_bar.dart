@@ -12,12 +12,18 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title,
-          style: const TextStyle(color: Colors.white, fontSize: 14)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      ),
       backgroundColor: const Color(0xFF273773),
       leading: MaterialButton(
-          onPressed: () => Navigator.pop(context),
-          child: Image.asset("assets/back_arrow.png")),
+        onPressed: () => Navigator.pop(context),
+        child: Image.asset("assets/back_arrow.png"),
+      ),
       actions: actions,
     );
   }

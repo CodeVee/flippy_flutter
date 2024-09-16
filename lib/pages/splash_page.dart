@@ -35,7 +35,9 @@ class _SplashPageState extends State<SplashPage> {
               width: 150,
               padding: const EdgeInsets.all(25),
               decoration: const BoxDecoration(
-                  color: Colors.white, shape: BoxShape.circle),
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
               child: Image.asset(
                 'assets/main_logo.png',
                 fit: BoxFit.contain,
@@ -44,11 +46,11 @@ class _SplashPageState extends State<SplashPage> {
             Text(
               "Flippy",
               style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic)
-                  .withLemon(),
+                color: Colors.white,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ).withLemon(),
             ),
             Text(
               "Online Grocery Shop",

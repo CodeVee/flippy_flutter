@@ -1,6 +1,6 @@
+import 'package:flippy_app/themes/themes.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -48,37 +48,41 @@ class _WelcomePageState extends State<WelcomePage> {
             const AppHeader(),
             const SizedBox(height: 10),
             SizedBox(
-                height: 420,
-                child: PageView.builder(
-                    itemCount: imagePaths.length,
-                    controller: _controller,
-                    onPageChanged: (pageNumber) => {
-                          setState(() {
-                            _currentPage = pageNumber;
-                            _lastPage = _currentPage == imagePaths.length - 1;
-                          })
-                        },
-                    itemBuilder: (context, index) =>
-                        _getPage(imagePaths[index]))),
+              height: 420,
+              child: PageView.builder(
+                itemCount: imagePaths.length,
+                controller: _controller,
+                onPageChanged: (pageNumber) => {
+                  setState(() {
+                    _currentPage = pageNumber;
+                    _lastPage = _currentPage == imagePaths.length - 1;
+                  })
+                },
+                itemBuilder: (context, index) => _getPage(imagePaths[index]),
+              ),
+            ),
             SizedBox(
-                width: 230,
-                child: Text(
-                  "Plan your trip, choose your destination. Pick the best place for your holiday.",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                      textStyle: const TextStyle(
-                          fontSize: 14,
-                          color: Color.fromRGBO(17, 17, 17, 0.5))),
-                )),
+              width: 230,
+              child: Text(
+                "Plan your trip, choose your destination. Pick the best place for your holiday.",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Color.fromRGBO(17, 17, 17, 0.5),
+                ).withLato(),
+              ),
+            ),
             const Spacer(),
             Container(
-                child: _lastPage
-                    ? AppButton(
-                        title: "Get Started",
-                        onTap: () {
-                          Navigator.pushNamed(context, "/login-register");
-                        })
-                    : _getScroll()),
+              child: _lastPage
+                  ? AppButton(
+                      title: "Get Started",
+                      onTap: () {
+                        Navigator.pushNamed(context, "/login-register");
+                      },
+                    )
+                  : _getScroll(),
+            ),
             const Spacer()
           ],
         ),
@@ -97,9 +101,10 @@ class _WelcomePageState extends State<WelcomePage> {
         const Spacer(),
         Text(
           content.header,
-          style: GoogleFonts.lato(
-              textStyle:
-                  const TextStyle(fontSize: 22, color: Color(0xFF111111))),
+          style: const TextStyle(
+            fontSize: 22,
+            color: AppColors.mainDark,
+          ).withLato(),
         ),
       ],
     );
@@ -107,49 +112,53 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _getScroll() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            MaterialButton(
-              onPressed: () {
-                _controller.animateToPage(2,
-                    duration: const Duration(milliseconds: _duration),
-                    curve: Curves.ease);
-              },
-              child: Text("SKIP",
-                  style: GoogleFonts.lato(
-                      textStyle: const TextStyle(color: Color(0xFF111111)))),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          MaterialButton(
+            onPressed: () {
+              _controller.animateToPage(2,
+                  duration: const Duration(milliseconds: _duration),
+                  curve: Curves.ease);
+            },
+            child: Text(
+              "SKIP",
+              style: const TextStyle(color: AppColors.mainDark).withLato(),
             ),
-            Row(
-              children: List.generate(imagePaths.length,
-                  (index) => _getDotIndicator(index == _currentPage)),
+          ),
+          Row(
+            children: List.generate(imagePaths.length,
+                (index) => _getDotIndicator(index == _currentPage)),
+          ),
+          MaterialButton(
+            onPressed: () {
+              _controller.nextPage(
+                  duration: const Duration(milliseconds: _duration),
+                  curve: Curves.ease);
+            },
+            child: Text(
+              "NEXT",
+              style: const TextStyle(color: AppColors.mainBlue).withLato(),
             ),
-            MaterialButton(
-              onPressed: () {
-                _controller.nextPage(
-                    duration: const Duration(milliseconds: _duration),
-                    curve: Curves.ease);
-              },
-              child: Text("NEXT",
-                  style: GoogleFonts.lato(
-                      textStyle: const TextStyle(color: Color(0xFF273773)))),
-            )
-          ],
-        ));
+          )
+        ],
+      ),
+    );
   }
 
   Widget _getDotIndicator(bool isActive) {
     return AnimatedContainer(
-        duration: const Duration(milliseconds: _duration),
-        height: 10,
-        width: 10,
-        margin: const EdgeInsets.only(left: 5),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isActive
-                ? const Color(0xFF273773)
-                : const Color.fromRGBO(39, 55, 115, .3)));
+      duration: const Duration(milliseconds: _duration),
+      height: 10,
+      width: 10,
+      margin: const EdgeInsets.only(left: 5),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color:
+            isActive ? AppColors.mainBlue : AppColors.mainBlue.withOpacity(0.3),
+      ),
+    );
   }
 }
 
