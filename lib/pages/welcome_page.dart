@@ -1,6 +1,7 @@
 import 'package:flippy_app/themes/themes.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -39,55 +40,63 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: AppColors.mainGrey,
+        statusBarColor: AppColors.mainGrey,
+      ),
+    );
     return Scaffold(
-        body: SafeArea(
-      child: Center(
-        child: Column(
-          children: [
-            const Spacer(),
-            const AppHeader(),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 420,
-              child: PageView.builder(
-                itemCount: imagePaths.length,
-                controller: _controller,
-                onPageChanged: (pageNumber) => {
-                  setState(() {
-                    _currentPage = pageNumber;
-                    _lastPage = _currentPage == imagePaths.length - 1;
-                  })
-                },
-                itemBuilder: (context, index) => _getPage(imagePaths[index]),
+      backgroundColor: AppColors.mainGrey,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              const Spacer(),
+              const AppHeader(),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 420,
+                child: PageView.builder(
+                  itemCount: imagePaths.length,
+                  controller: _controller,
+                  onPageChanged: (pageNumber) => {
+                    setState(() {
+                      _currentPage = pageNumber;
+                      _lastPage = _currentPage == imagePaths.length - 1;
+                    })
+                  },
+                  itemBuilder: (context, index) => _getPage(imagePaths[index]),
+                ),
               ),
-            ),
-            SizedBox(
-              width: 230,
-              child: Text(
-                "Plan your trip, choose your destination. Pick the best place for your holiday.",
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color.fromRGBO(17, 17, 17, 0.5),
-                ).withLato(),
+              SizedBox(
+                width: 230,
+                child: Text(
+                  "Plan your trip, choose your destination. Pick the best place for your holiday.",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Color.fromRGBO(17, 17, 17, 0.5),
+                  ).withLato(),
+                ),
               ),
-            ),
-            const Spacer(),
-            Container(
-              child: _lastPage
-                  ? AppButton(
-                      title: "Get Started",
-                      onTap: () {
-                        Navigator.pushNamed(context, "/login-register");
-                      },
-                    )
-                  : _getScroll(),
-            ),
-            const Spacer()
-          ],
+              const Spacer(),
+              Container(
+                child: _lastPage
+                    ? AppButton(
+                        title: "Get Started",
+                        onTap: () {
+                          Navigator.pushNamed(context, "/login-register");
+                        },
+                      )
+                    : _getScroll(),
+              ),
+              const Spacer()
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Widget _getPage(WelcomeContent content) {

@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flippy_app/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -24,6 +24,12 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: AppColors.mainBlue,
+        statusBarColor: AppColors.mainBlue,
+      ),
+    );
     return Scaffold(
       backgroundColor: AppColors.mainBlue,
       body: Center(

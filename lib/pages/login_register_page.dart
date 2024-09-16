@@ -7,13 +7,21 @@ class LoginRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(title: "Choose Location", actions: [
-        MaterialButton(
+      appBar: MainAppBar(
+        title: "Choose Location",
+        withLowerColor: true,
+        actions: [
+          MaterialButton(
             onPressed: () {
               Navigator.pushNamed(context, '/login');
             },
-            child: const Text("Login", style: TextStyle(color: Colors.white)))
-      ]),
+            child: const Text(
+              "Login",
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
+      ),
       body: Center(
         child: Container(
           color: const Color(0xFF273773),
