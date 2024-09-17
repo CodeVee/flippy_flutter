@@ -1,9 +1,12 @@
+import 'package:flippy_app/themes/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppHeader extends StatelessWidget {
   final bool alternate;
-  const AppHeader({super.key, this.alternate = false});
+  const AppHeader({
+    super.key,
+    this.alternate = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +18,23 @@ class AppHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Flippy",
-                style: GoogleFonts.lemon(
-                  textStyle: const TextStyle(
-                      color: Color(0xFF56D5A8),
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic),
-                )),
+            Text(
+              "Flippy",
+              style: const TextStyle(
+                color: AppColors.mainGreen,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ).withLemon(),
+            ),
             Text(
               "Online Grocery Shops",
               textAlign: TextAlign.right,
-              style: GoogleFonts.lato(
-                  textStyle: TextStyle(
-                      color: alternate ? Colors.white : const Color(0xFF273773),
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold)),
+              style: TextStyle(
+                color: alternate ? Colors.white : AppColors.mainBlue,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ).withLato(),
             )
           ],
         )
