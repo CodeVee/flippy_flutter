@@ -33,12 +33,16 @@ class LoginRegisterPage extends StatelessWidget {
               Image.asset("assets/main_avatar.png"),
               const Spacer(),
               AppButton(
-                  title: "Login With Google", onTap: () {}, secondary: true),
+                title: "Login With Google",
+                onTap: () {},
+                secondary: true,
+              ),
               const SizedBox(height: 20),
               AppButton(
-                  title: "Continue With Facebook",
-                  onTap: () {},
-                  secondary: true),
+                title: "Continue With Facebook",
+                onTap: () {},
+                secondary: true,
+              ),
               const Spacer()
             ],
           ),
