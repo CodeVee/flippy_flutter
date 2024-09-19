@@ -19,15 +19,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
   _login() {
     Navigator.pushNamedAndRemoveUntil(
-        context, "/login", ModalRoute.withName("/login-register"));
+      context,
+      "/login",
+      ModalRoute.withName("/login-register"),
+    );
   }
 
   @override
   void dispose() {
+    super.dispose();
     _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    super.dispose();
   }
 
   @override
@@ -97,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF273773),
+                              color: AppColors.mainBlue,
                             ).withLato(),
                           ),
                         ),
