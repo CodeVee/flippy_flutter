@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flippy_app/themes/themes.dart';
-import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -131,8 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                       width: 20,
                       margin: const EdgeInsets.only(left: 16),
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: AppColors.mainBlue, width: 1.0),
+                        border: Border.all(
+                          color: AppColors.mainBlue,
+                          width: 1.0,
+                        ),
                       ),
                       child: Checkbox(
                         value: _rememberMe,
@@ -144,15 +145,18 @@ class _LoginPageState extends State<LoginPage> {
                         activeColor: Colors.transparent,
                         checkColor: AppColors.mainBlue,
                         side: const BorderSide(
-                            color: Colors.transparent, width: 1.0),
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       "Remember Me",
                       style: const TextStyle(
-                              fontSize: 12, color: AppColors.mainDark)
-                          .withLato(),
+                        fontSize: 12,
+                        color: AppColors.mainDark,
+                      ).withLato(),
                     )
                   ],
                 ),
@@ -162,7 +166,10 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: const Text(
                     "Forgot Password?",
-                    style: TextStyle(fontSize: 10, color: AppColors.mainBlue),
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: AppColors.mainBlue,
+                    ),
                   ),
                 ),
               ],
@@ -174,9 +181,10 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   "Or login with social media",
-                  style:
-                      const TextStyle(fontSize: 12, color: AppColors.mainDark)
-                          .withLato(),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.mainDark,
+                  ).withLato(),
                 ),
                 const SizedBox(height: 10),
                 Row(
