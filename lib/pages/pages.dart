@@ -6,3 +6,4 @@ export 'register_page.dart';
 export 'forgot_password_page.dart';
 export 'reset_password_page.dart';
 export 'choose_location_page.dart';
+export 'select_location_page.dart';
