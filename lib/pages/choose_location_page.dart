@@ -30,7 +30,9 @@ class ChooseLocationPage extends StatelessWidget {
               const SizedBox(height: 20),
               AppButton(
                 title: "Select Manually",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/select-location");
+                },
                 secondary: true,
               ),
               const Spacer()
