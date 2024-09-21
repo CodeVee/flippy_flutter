@@ -21,6 +21,7 @@ class MainApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/forgot-password': (context) => const ForgotPasswordPage(),
         '/reset-password': (context) => const ResetPasswordPage(),
+        '/choose-location': (context) => const ChooseLocationPage(),
       },
     );
   }

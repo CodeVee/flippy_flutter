@@ -1,4 +1,5 @@
 import 'package:flippy_app/components/components.dart';
+import 'package:flippy_app/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class LoginRegisterPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class LoginRegisterPage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          color: const Color(0xFF273773),
+          color: AppColors.mainBlue,
           child: Column(
             children: [
               const Spacer(),
@@ -34,7 +35,9 @@ class LoginRegisterPage extends StatelessWidget {
               const Spacer(),
               AppButton(
                 title: "Login With Google",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/choose-location");
+                },
                 secondary: true,
               ),
               const SizedBox(height: 20),
