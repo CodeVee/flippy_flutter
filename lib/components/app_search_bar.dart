@@ -16,6 +16,10 @@ class AppSearchBar extends StatefulWidget {
 }
 
 class _AppSearchBarState extends State<AppSearchBar> {
+  final borderStyle = OutlineInputBorder(
+    borderSide: BorderSide.none,
+    borderRadius: BorderRadius.circular(32),
+  );
   bool showCancel = false;
 
   @override
@@ -54,18 +58,9 @@ class _AppSearchBarState extends State<AppSearchBar> {
           filled: true,
           contentPadding: const EdgeInsets.all(0),
           fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(32),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(32),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(32),
-          ),
+          border: borderStyle,
+          focusedBorder: borderStyle,
+          enabledBorder: borderStyle,
           hintText: widget.hintText,
           hintStyle: TextStyle(
             fontSize: 14,
