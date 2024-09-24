@@ -74,9 +74,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Text(
                   "Plan your trip, choose your destination. Pick the best place for your holiday.",
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Color.fromRGBO(17, 17, 17, 0.5),
+                    color: AppColors.mainDark.withOpacity(.5),
                   ).withLato(),
                 ),
               ),
