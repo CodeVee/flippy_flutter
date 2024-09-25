@@ -127,9 +127,11 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           MaterialButton(
             onPressed: () {
-              _controller.animateToPage(2,
-                  duration: const Duration(milliseconds: _duration),
-                  curve: Curves.ease);
+              _controller.animateToPage(
+                2,
+                duration: const Duration(milliseconds: _duration),
+                curve: Curves.ease,
+              );
             },
             child: Text(
               "SKIP",
@@ -137,14 +139,17 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
           ),
           Row(
-            children: List.generate(imagePaths.length,
-                (index) => _getDotIndicator(index == _currentPage)),
+            children: List.generate(
+              imagePaths.length,
+              (index) => _getDotIndicator(index == _currentPage),
+            ),
           ),
           MaterialButton(
             onPressed: () {
               _controller.nextPage(
-                  duration: const Duration(milliseconds: _duration),
-                  curve: Curves.ease);
+                duration: const Duration(milliseconds: _duration),
+                curve: Curves.ease,
+              );
             },
             child: Text(
               "NEXT",
