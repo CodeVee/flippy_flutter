@@ -180,6 +180,9 @@ class WelcomeContent {
   final String path;
   final String header;
   final BoxFit boxfit;
-  const WelcomeContent(
-      {required this.path, required this.header, required this.boxfit});
+  const WelcomeContent({
+    required this.path,
+    required this.header,
+    required this.boxfit,
+  });
 }
