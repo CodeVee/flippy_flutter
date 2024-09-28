@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
+  final Widget? leading;
   final bool withLowerColor;
 
   @override
@@ -14,6 +15,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.actions,
+    this.leading,
     this.withLowerColor = false,
   });
 
@@ -33,10 +35,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: AppColors.mainBlue,
-      leading: MaterialButton(
-        onPressed: () => Navigator.pop(context),
-        child: Image.asset("assets/back_arrow.png"),
-      ),
+      leading: leading ??
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: Image.asset("assets/back_arrow.png"),
+          ),
       actions: actions,
     );
   }
