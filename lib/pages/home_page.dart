@@ -1,0 +1,275 @@
+import 'package:flutter/material.dart';
+import 'package:flippy_app/components/components.dart';
+import 'package:flippy_app/themes/themes.dart';
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  final categories = [
+    const Category(imageAsset: 'assets/icons/grocery.png', name: 'Grocery'),
+    const Category(imageAsset: 'assets/icons/beverage.png', name: 'Beverages'),
+    const Category(
+        imageAsset: 'assets/icons/vegetable.png', name: 'Vegetables'),
+    const Category(imageAsset: 'assets/icons/fruit.png', name: 'Fruits'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.mainGrey,
+      appBar: MainAppBar(
+        title: 'Home',
+        leading: const Icon(
+          Icons.menu,
+          color: Colors.white,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications_none_outlined,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedIconTheme: const IconThemeData(color: AppColors.mainGreen),
+        selectedItemColor: AppColors.mainGreen,
+        unselectedIconTheme: const IconThemeData(color: AppColors.mainDark),
+        unselectedItemColor: AppColors.mainDark,
+        showUnselectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.grid_view_outlined),
+            label: 'Category',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_outlined),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 15),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Image.asset(
+              'assets/images/grocery_store.png',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                _getHeader('All Categories'),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: categories
+                      .map((category) => _getCatergory(category))
+                      .toList(),
+                ),
+                const SizedBox(height: 20),
+                _getHeader('Best Sellers'),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+          Container(
+            height: 175,
+            margin: const EdgeInsets.only(left: 15),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 4,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: _getTile(),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: _getHeader('Fruits'),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 175,
+            margin: const EdgeInsets.only(left: 15),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 4,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: _getTile(),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget _getHeader(String header) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          header,
+          style: const TextStyle(
+            color: AppColors.mainDark,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ).withLato(),
+        ),
+        Row(
+          children: [
+            Text(
+              'View All',
+              style: const TextStyle(
+                color: AppColors.mainBlue,
+                fontSize: 12,
+              ).withLato(),
+            ),
+            const Icon(Icons.arrow_right),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _getCatergory(Category category) {
+    return Column(
+      children: [
+        Container(
+          height: 80,
+          width: 80,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: Image.asset(category.imageAsset),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          category.name,
+          style: const TextStyle(
+            color: AppColors.mainDark,
+            fontSize: 10,
+          ).withLato(),
+        )
+      ],
+    );
+  }
+
+  Widget _getTile() {
+    return SizedBox(
+      width: 120,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _getItem(),
+          const Spacer(),
+          Text(
+            'Mushroom',
+            style: TextStyle(
+                    fontSize: 10, color: AppColors.mainDark.withOpacity(.7))
+                .withLato(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '\$150',
+                style: const TextStyle(fontSize: 12, color: AppColors.mainDark)
+                    .withLato(),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                decoration: BoxDecoration(
+                    color: AppColors.mainBlue,
+                    borderRadius: BorderRadius.circular(7)),
+                child: Text(
+                  'Add',
+                  style: const TextStyle(fontSize: 10, color: Colors.white)
+                      .withLato(),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _getItem() {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 2,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.mainDark.withOpacity(.5),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '1KG',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ).withLato(),
+                ),
+              ),
+              Icon(
+                Icons.favorite_border_outlined,
+                size: 15,
+                color: AppColors.mainDark.withOpacity(.5),
+              ),
+            ],
+          ),
+          const SizedBox(height: 5),
+          Image.asset('assets/images/mushroom.png'),
+        ],
+      ),
+    );
+  }
+}
+
+class Category {
+  final String imageAsset;
+  final String name;
+  const Category({
+    required this.imageAsset,
+    required this.name,
+  });
+}
