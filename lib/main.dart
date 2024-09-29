@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => const NavigationPage(),
         '/splash': (context) => const SplashPage(),
         '/welcome': (context) => const WelcomePage(),
         '/login-register': (context) => const LoginRegisterPage(),
