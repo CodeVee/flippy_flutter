@@ -22,16 +22,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: AppColors.mainBlue,
-        systemNavigationBarColor:
-            withLowerColor ? AppColors.mainBlue : AppColors.mainGrey,
+        systemNavigationBarColor: Colors.white,
       ),
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
+      title: Center(
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+          ),
         ),
       ),
       backgroundColor: AppColors.mainBlue,
