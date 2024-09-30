@@ -33,36 +33,33 @@ class _NavigationPageState extends State<NavigationPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _changePage,
+        backgroundColor: Colors.white,
         selectedIconTheme: const IconThemeData(color: AppColors.mainGreen),
         selectedItemColor: AppColors.mainGreen,
         unselectedIconTheme: const IconThemeData(color: AppColors.mainDark),
         unselectedItemColor: AppColors.mainDark,
         showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Search',
-            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.grid_view_outlined),
             label: 'Category',
-            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_outlined),
             label: 'Cart',
-            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
-            backgroundColor: Colors.white,
           ),
         ],
       ),
