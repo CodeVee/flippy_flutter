@@ -1,4 +1,4 @@
-import 'package:flippy_app/pages/home_page.dart';
+import 'package:flippy_app/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flippy_app/themes/themes.dart';
 
@@ -14,7 +14,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   final _pages = [
     HomePage(),
-    const Center(child: Text('P Square')),
+    const SearchPage(),
     const Center(child: Text('Preston Pablo')),
     const Center(child: Text('Fave')),
     const Center(child: Text('Davido')),
