@@ -1,4 +1,4 @@
-import 'package:flippy_app/themes/app_colors.dart';
+import 'package:flippy_app/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,19 +26,22 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         statusBarColor: AppColors.mainBlue,
         systemNavigationBarColor: Colors.white,
       ),
-      title: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
+      title: Padding(
+        padding: EdgeInsets.only(right: actions != null ? 0 : 48),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+            ).withLato(),
           ),
         ),
       ),
       backgroundColor: AppColors.mainBlue,
       leading: leading ??
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => (),
             child: Image.asset("assets/back_arrow.png"),
           ),
       actions: actions,
