@@ -162,8 +162,9 @@ class HomePage extends StatelessWidget {
           Text(
             'Mushroom',
             style: TextStyle(
-                    fontSize: 10, color: AppColors.mainDark.withOpacity(.7))
-                .withLato(),
+              fontSize: 10,
+              color: AppColors.mainDark.withOpacity(.7),
+            ).withLato(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
