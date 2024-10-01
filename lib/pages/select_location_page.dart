@@ -96,9 +96,15 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemCount: _displayCountries.length,
-                    itemBuilder: (context, index) => _getTile(
-                        _displayCountries[index],
-                        selectedCountry == _displayCountries[index]),
+                    itemBuilder: (context, index) => SearchTile(
+                      title: _displayCountries[index],
+                      selected: selectedCountry == _displayCountries[index],
+                      onTap: () => {
+                        setState(
+                          () => selectedCountry = _displayCountries[index],
+                        ),
+                      },
+                    ),
                   ),
                 )
               ],
@@ -106,37 +112,6 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _getTile(String title, bool selected) {
-    return ListTile(
-      onTap: () => {
-        setState(() {
-          selectedCountry = title;
-        })
-      },
-      contentPadding: const EdgeInsets.all(0),
-      shape: Border(
-        bottom: BorderSide(
-          width: 1,
-          color: AppColors.mainDark.withOpacity(.1),
-        ),
-      ),
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: AppColors.mainDark,
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-        ).withLato(),
-      ),
-      trailing: selected
-          ? const Icon(
-              Icons.check,
-              color: AppColors.mainBlue,
-            )
-          : null,
     );
   }
 }
