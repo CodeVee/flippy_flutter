@@ -6,7 +6,10 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final categories = [
-    const Category(imageAsset: 'assets/icons/grocery.png', name: 'Grocery'),
+    const Category(
+      imageAsset: 'assets/icons/grocery.png',
+      name: 'Grocery',
+    ),
     const Category(imageAsset: 'assets/icons/beverage.png', name: 'Beverages'),
     const Category(
         imageAsset: 'assets/icons/vegetable.png', name: 'Vegetables'),
