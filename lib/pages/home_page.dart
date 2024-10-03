@@ -4,18 +4,7 @@ import 'package:flippy_app/themes/themes.dart';
 import 'package:flippy_app/models/models.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  final categories = [
-    const Category(
-      imageAsset: 'assets/icons/grocery.png',
-      name: 'Grocery',
-    ),
-    const Category(imageAsset: 'assets/icons/beverage.png', name: 'Beverages'),
-    const Category(
-        imageAsset: 'assets/icons/vegetable.png', name: 'Vegetables'),
-    const Category(imageAsset: 'assets/icons/fruit.png', name: 'Fruits'),
-  ];
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +47,7 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: categories
+                      .sublist(0, 4)
                       .map((category) => CategoryTile(category: category))
                       .toList(),
                 ),
