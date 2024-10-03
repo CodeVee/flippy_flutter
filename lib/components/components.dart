@@ -5,3 +5,4 @@ export 'auth_app_bar.dart';
 export 'app_text_field.dart';
 export 'app_search_bar.dart';
 export 'search_tile.dart';
+export 'category_tile.dart';
