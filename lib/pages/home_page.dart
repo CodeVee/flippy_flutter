@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flippy_app/components/components.dart';
 import 'package:flippy_app/themes/themes.dart';
+import 'package:flippy_app/models/models.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: categories
-                      .map((category) => _getCatergory(category))
+                      .map((category) => CategoryTile(category: category))
                       .toList(),
                 ),
                 const SizedBox(height: 20),
@@ -126,30 +127,6 @@ class HomePage extends StatelessWidget {
             const Icon(Icons.arrow_right),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _getCatergory(Category category) {
-    return Column(
-      children: [
-        Container(
-          height: 80,
-          width: 80,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: Image.asset(category.imageAsset),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          category.name,
-          style: const TextStyle(
-            color: AppColors.mainDark,
-            fontSize: 10,
-          ).withLato(),
-        )
       ],
     );
   }
@@ -238,13 +215,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
-
-class Category {
-  final String imageAsset;
-  final String name;
-  const Category({
-    required this.imageAsset,
-    required this.name,
-  });
 }
