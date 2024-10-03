@@ -13,9 +13,9 @@ class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
 
   final _pages = [
-    HomePage(),
+    const HomePage(),
     const SearchPage(),
-    const Center(child: Text('Preston Pablo')),
+    const CategoryPage(),
     const Center(child: Text('Fave')),
     const Center(child: Text('Davido')),
   ];

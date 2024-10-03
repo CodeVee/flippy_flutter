@@ -11,3 +11,4 @@ export 'select_location_page.dart';
 export 'navigation_page.dart';
 export 'home_page.dart';
 export 'search_page.dart';
+export 'category_page.dart';
