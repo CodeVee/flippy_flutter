@@ -22,6 +22,12 @@ class _AppSearchBarState extends State<AppSearchBar> {
   );
   bool showCancel = false;
 
+  void _updateCancel(String value) {
+    setState(() {
+      showCancel = value.isNotEmpty;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,11 +38,7 @@ class _AppSearchBarState extends State<AppSearchBar> {
       ),
       decoration: const BoxDecoration(color: AppColors.mainBlue),
       child: TextField(
-        onChanged: (value) {
-          setState(() {
-            showCancel = value.isNotEmpty;
-          });
-        },
+        onChanged: _updateCancel,
         controller: widget.controller,
         cursorColor: AppColors.mainBlue,
         decoration: InputDecoration(
