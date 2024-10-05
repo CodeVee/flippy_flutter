@@ -141,8 +141,10 @@ class HomePage extends StatelessWidget {
             children: [
               Text(
                 '\$150',
-                style: const TextStyle(fontSize: 12, color: AppColors.mainDark)
-                    .withLato(),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: AppColors.mainDark,
+                ).withLato(),
               ),
               Container(
                 padding:
