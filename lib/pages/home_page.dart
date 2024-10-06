@@ -150,12 +150,15 @@ class HomePage extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 decoration: BoxDecoration(
-                    color: AppColors.mainBlue,
-                    borderRadius: BorderRadius.circular(7)),
+                  color: AppColors.mainBlue,
+                  borderRadius: BorderRadius.circular(7),
+                ),
                 child: Text(
                   'Add',
-                  style: const TextStyle(fontSize: 10, color: Colors.white)
-                      .withLato(),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: Colors.white,
+                  ).withLato(),
                 ),
               )
             ],
