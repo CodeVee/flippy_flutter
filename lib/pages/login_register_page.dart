@@ -8,7 +8,7 @@ class LoginRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(
+      appBar: AuthAppBar(
         title: "Choose Location",
         withLowerColor: true,
         actions: [
