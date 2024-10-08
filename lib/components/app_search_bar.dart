@@ -28,6 +28,13 @@ class _AppSearchBarState extends State<AppSearchBar> {
     });
   }
 
+  void _clearSearch() {
+    widget.controller.clear();
+    setState(() {
+      showCancel = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,12 +53,7 @@ class _AppSearchBarState extends State<AppSearchBar> {
           prefixIconColor: AppColors.mainDark.withOpacity(.5),
           suffixIcon: showCancel
               ? IconButton(
-                  onPressed: () {
-                    widget.controller.clear();
-                    setState(() {
-                      showCancel = false;
-                    });
-                  },
+                  onPressed: _clearSearch,
                   icon: const Icon(Icons.cancel_outlined),
                 )
               : null,
