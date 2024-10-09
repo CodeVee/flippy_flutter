@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
-  final Function()? onTap;
+  final void Function()? onTap;
   final bool secondary;
   const AppButton({
     super.key,
