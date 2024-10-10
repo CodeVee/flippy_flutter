@@ -7,7 +7,7 @@ class AppTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool password;
   final bool isObscured;
-  final Function()? onPressed;
+  final void Function()? onPressed;
   const AppTextField({
     super.key,
     required this.title,
