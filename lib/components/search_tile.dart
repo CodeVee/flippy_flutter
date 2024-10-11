@@ -4,7 +4,7 @@ import 'package:flippy_app/themes/themes.dart';
 class SearchTile extends StatelessWidget {
   final String title;
   final bool selected;
-  final Function()? onTap;
+  final void Function()? onTap;
   const SearchTile({
     super.key,
     required this.title,
